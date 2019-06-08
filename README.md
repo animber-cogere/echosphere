@@ -32,7 +32,7 @@ func (b *bot) Update(update *echosphere.Update) {
 
 
 func main() {
-	echosphere.RunDispatcher("568059758:AAFRN3Xg3dOkfe2n0gNlOWjlkM6dihommPQ", false, NewBot)
+	echosphere.RunDispatcher("568059758:AAFRN3Xg3dOkfe2n0gNlOWjlkM6dihommPQ", NewBot)
 }
 ```
 

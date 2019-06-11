@@ -19,11 +19,11 @@
 package plugins
 
 import (
-		"fmt"
-		"strings"
-		"encoding/json"
-		"gitlab.com/animber-coder/echosphere"
-		)
+	"fmt"
+	"strings"
+	"encoding/json"
+	"gitlab.com/animber-coder/echosphere"
+)
 
 type article struct {
 	Author string `json:"author"`

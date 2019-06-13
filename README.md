@@ -60,7 +60,7 @@ func NewBot(token string, chatId int64) echosphere.Bot {
         chatId,
         echosphere.NewEngine(token),
     }
-    echosphere.AddTimer(bot.chatId, "selfDestruct", bot.selfDestruct)
+    echosphere.AddTimer(bot.chatId, "selfDestruct", bot.selfDestruct, 60)
     return bot
 }
 

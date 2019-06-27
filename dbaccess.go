@@ -1,5 +1,5 @@
 /*
- * Echosphere-GO
+ * Echosphere
  * Copyright (C) 2019  Nicolò Santamaria, Michele Dimaggio
  *
  * This program is free software: you can redistribute it and/or modify

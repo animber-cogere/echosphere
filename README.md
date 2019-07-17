@@ -3,7 +3,9 @@
 The true echosphere repo
 
 Fetch with
-`env GIT_TERMINAL_PROMPT=1 go get -u gitlab.com/animber-coder/echosphere`
+```bash
+go get -u gitlab.com/animber-coder/echosphere
+```
 
 
 ### Usage

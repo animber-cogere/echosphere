@@ -19,14 +19,14 @@ import "gitlab.com/animber-coder/echosphere"
 
 type bot struct {
 	chatId int64
-	*echosphere.Engine
+	echosphere.Engine
 }
 
 
-func NewBot(token string, chatId int64) echosphere.Bot {
+func NewBot(engine echosphere.Engine, chatId int64) echosphere.Bot {
 	return &bot{
 		chatId,
-		echosphere.NewEngine(token),
+		engine,
 	}
 }
 
@@ -53,14 +53,14 @@ import "gitlab.com/animber-coder/echosphere"
 
 type bot struct {
     chatId int64
-    *echosphere.Engine
+    echosphere.Engine
 }
 
 
-func NewBot(token string, chatId int64) echosphere.Bot {
+func NewBot(engine echosphere.Engine, chatId int64) echosphere.Bot {
     var bot = &bot{
         chatId,
-        echosphere.NewEngine(token),
+        engine,
     }
     echosphere.AddTimer(bot.chatId, "selfDestruct", bot.selfDestruct, 60)
     return bot

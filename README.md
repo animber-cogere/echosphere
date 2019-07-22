@@ -1,6 +1,6 @@
 # echosphere
 
-The true echosphere repo
+Library for telegram bots written in pure go
 
 Fetch with
 ```bash

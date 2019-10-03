@@ -7,9 +7,6 @@ Fetch with
 go get -u gitlab.com/animber-coder/echosphere
 ```
 
-Doc at:
-https://godoc.org/gitlab.com/animber-coder/echosphere
-
 ### Usage
 
 A very simple implementation:

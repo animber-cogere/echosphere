@@ -1,4 +1,4 @@
-# echosphere
+# echosphere [![GoDoc](https://godoc.org/gitlab.com/animber-coder/echosphere?status.svg)](https://godoc.org/gitlab.com/animber-coder/echosphere)
 
 Library for telegram bots written in pure go
 

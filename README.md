@@ -1,4 +1,4 @@
-# echosphere [![GoDoc](https://godoc.org/gitlab.com/animber-coder/echosphere?status.svg)](https://godoc.org/gitlab.com/animber-coder/echosphere) [![Go Report Card](https://goreportcard.com/badge/gitlab.com/animber-coder/echosphere)](https://goreportcard.com/report/gitlab.com/animber-coder/echosphere)
+# echosphere [![GoDoc](https://godoc.org/gitlab.com/animber-coder/echosphere?status.svg)](https://godoc.org/gitlab.com/animber-coder/echosphere)[![Go Report Card](https://goreportcard.com/badge/gitlab.com/animber-coder/echosphere)](https://goreportcard.com/report/gitlab.com/animber-coder/echosphere)
 
 Library for telegram bots written in pure go
 
@@ -17,25 +17,22 @@ package main
 import "gitlab.com/animber-coder/echosphere"
 
 type bot struct {
-	chatId int64
-	echosphere.Engine
+    chatId int64
+    echosphere.Engine
 }
-
 
 func newBot(engine echosphere.Engine, chatId int64) echosphere.Bot {
-	return &bot{
-		chatId,
-		engine,
-	}
+    return &bot{
+        chatId,
+        engine,
+    }
 }
-
 
 func (b *bot) Update(update *echosphere.Update) {
     if update.Message.Text == "/start" {
         b.SendMessage("Hello world", b.chatId)
     }
 }
-
 
 func main() {
     dsp := echosphere.NewDispatcher("TELEGRAM TOKEN", newBot)
@@ -56,6 +53,7 @@ type bot struct {
     echosphere.Engine
 }
 
+var dsp echosphere.Dispatcher
 
 func newBot(engine echosphere.Engine, chatId int64) echosphere.Bot {
     var bot = &bot{
@@ -66,13 +64,11 @@ func newBot(engine echosphere.Engine, chatId int64) echosphere.Bot {
     return bot
 }
 
-
 func (b *bot) selfDestruct() {
     b.SendMessage("goodbye", b.chatId)
     echosphere.DelTimer(b.chatId, "selfDestruct")
-    echosphere.DelSession(b.chatId)
+    dsp.DelSession(b.chatId)
 }
-
 
 func (b *bot) Update(update *echosphere.Update) {
     if update.Message.Text == "/start" {
@@ -80,9 +76,8 @@ func (b *bot) Update(update *echosphere.Update) {
     }
 }
 
-
 func main() {
-    dsp := echosphere.NewDispatcher("TELEGRAM TOKEN", newBot)
+    dsp = echosphere.NewDispatcher("TELEGRAM TOKEN", newBot)
     dsp.Run()
 }
 ```

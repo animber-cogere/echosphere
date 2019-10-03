@@ -42,7 +42,7 @@ func (b *bot) Update(update *echosphere.Update) {
 
 func main() {
     dsp := echosphere.NewDispatcher("TELEGRAM TOKEN", newBot)
-	dsp.Run()
+    dsp.Run()
 }
 ```
 

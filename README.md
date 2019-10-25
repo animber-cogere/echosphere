@@ -1,4 +1,4 @@
-# echosphere [![GoDoc](https://godoc.org/gitlab.com/animber-coder/echosphere?status.svg)](https://godoc.org/gitlab.com/animber-coder/echosphere) [![Go Report Card](https://goreportcard.com/badge/gitlab.com/animber-coder/echosphere)](https://goreportcard.com/report/gitlab.com/animber-coder/echosphere) [![License](http://img.shields.io/badge/license-LGPL3.0-orange.svg?style=flat)](https://gitlab.com/animber-coder/echosphere/blob/master/LICENSE)
+# echosphere [![Language](https://img.shields.io/badge/Language-Go-blue.svg)](https://golang.org/) [![GoDoc](https://godoc.org/gitlab.com/animber-coder/echosphere?status.svg)](https://godoc.org/gitlab.com/animber-coder/echosphere) [![Go Report Card](https://goreportcard.com/badge/gitlab.com/animber-coder/echosphere)](https://goreportcard.com/report/gitlab.com/animber-coder/echosphere) [![License](http://img.shields.io/badge/license-LGPL3.0-orange.svg?style=flat)](https://gitlab.com/animber-coder/echosphere/blob/master/LICENSE)
 
 Library for telegram bots written in pure go
 

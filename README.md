@@ -1,10 +1,10 @@
-# echosphere [![Language](https://img.shields.io/badge/Language-Go-blue.svg)](https://golang.org/) [![GoDoc](https://godoc.org/gitlab.com/animber-coder/echosphere?status.svg)](https://godoc.org/gitlab.com/animber-coder/echosphere) [![Go Report Card](https://goreportcard.com/badge/gitlab.com/animber-coder/echosphere)](https://goreportcard.com/report/gitlab.com/animber-coder/echosphere) [![License](http://img.shields.io/badge/license-LGPL3.0-orange.svg?style=flat)](https://gitlab.com/animber-coder/echosphere/blob/master/LICENSE)
+# echosphere [![Language](https://img.shields.io/badge/Language-Go-blue.svg)](https://golang.org/) [![GoDoc](https://godoc.org/github.com/animber-coder/echosphere?status.svg)](https://godoc.org/github.com/animber-coder/echosphere) [![Go Report Card](https://goreportcard.com/badge/github.com/animber-coder/echosphere)](https://goreportcard.com/report/github.com/animber-coder/echosphere) [![License](http://img.shields.io/badge/license-LGPL3.0-orange.svg?style=flat)](https://github.com/animber-coder/echosphere/blob/master/LICENSE)
 
 Library for telegram bots written in pure go
 
 Fetch with
 ```bash
-go get -u gitlab.com/animber-coder/echosphere
+go get -u github.com/animber-coder/echosphere
 ```
 
 ### Usage
@@ -14,7 +14,7 @@ A very simple implementation:
 ```go
 package main
 
-import "gitlab.com/animber-coder/echosphere"
+import "github.com/animber-coder/echosphere"
 
 type bot struct {
     chatId int64
@@ -46,7 +46,7 @@ Also proof of concept with self destruction for low ram usage
 ```go
 package main
 
-import "gitlab.com/animber-coder/echosphere"
+import "github.com/animber-coder/echosphere"
 
 type bot struct {
     chatId int64

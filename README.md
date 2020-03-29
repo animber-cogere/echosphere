@@ -18,13 +18,13 @@ import "github.com/animber-coder/echosphere"
 
 type bot struct {
     chatId int64
-    echosphere.Engine
+    echosphere.Api
 }
 
-func newBot(engine echosphere.Engine, chatId int64) echosphere.Bot {
+func newBot(api echosphere.Api, chatId int64) echosphere.Bot {
     return &bot{
         chatId,
-        engine,
+        api,
     }
 }
 
@@ -50,15 +50,15 @@ import "github.com/animber-coder/echosphere"
 
 type bot struct {
     chatId int64
-    echosphere.Engine
+    echosphere.Api
 }
 
 var dsp echosphere.Dispatcher
 
-func newBot(engine echosphere.Engine, chatId int64) echosphere.Bot {
+func newBot(api echosphere.Api, chatId int64) echosphere.Bot {
     var bot = &bot{
         chatId,
-        engine,
+        api,
     }
     echosphere.AddTimer(bot.chatId, "selfDestruct", bot.selfDestruct, 60)
     return bot

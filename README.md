@@ -21,10 +21,12 @@ type bot struct {
     echosphere.Api
 }
 
-func newBot(api echosphere.Api, chatId int64) echosphere.Bot {
+const TOKEN = "YOUR TELEGRAM TOKEN"
+
+func newBot(chatId int64) echosphere.Bot {
     return &bot{
         chatId,
-        api,
+        echosphere.NewApi(TOKEN),
     }
 }
 
@@ -35,7 +37,7 @@ func (b *bot) Update(update *echosphere.Update) {
 }
 
 func main() {
-    dsp := echosphere.NewDispatcher("TELEGRAM TOKEN", newBot)
+    dsp := echosphere.NewDispatcher(TOKEN, newBot)
     dsp.Run()
 }
 ```
@@ -57,14 +59,16 @@ type bot struct {
     echosphere.Api
 }
 
+const TOKEN = "YOUR TELEGRAM TOKEN"
+
 var dsp echosphere.Dispatcher
 
-func newBot(api echosphere.Api, chatId int64) echosphere.Bot {
+func newBot(chatId int64) echosphere.Bot {
     var bot = &bot{
         chatId,
-        api,
+        echosphere.NewApi(TOKEN),
     }
-    go selfDestruct(time.After(time.Hour))
+    go bot.selfDestruct(time.After(time.Hour))
     return bot
 }
 
@@ -83,7 +87,7 @@ func (b *bot) Update(update *echosphere.Update) {
 }
 
 func main() {
-    dsp = echosphere.NewDispatcher("TELEGRAM TOKEN", newBot)
+    dsp = echosphere.NewDispatcher(TOKEN, newBot)
     dsp.Run()
 }
 ```

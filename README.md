@@ -46,7 +46,11 @@ Also proof of concept with self destruction for low ram usage
 ```go
 package main
 
-import "github.com/animber-coder/echosphere"
+import (
+    "time"
+
+    "github.com/animber-coder/echosphere"
+)
 
 type bot struct {
     chatId int64
@@ -60,14 +64,16 @@ func newBot(api echosphere.Api, chatId int64) echosphere.Bot {
         chatId,
         api,
     }
-    echosphere.AddTimer(bot.chatId, "selfDestruct", bot.selfDestruct, 60)
+    go selfDestruct(time.After(time.Hour))
     return bot
 }
 
-func (b *bot) selfDestruct() {
-    b.SendMessage("goodbye", b.chatId)
-    echosphere.DelTimer(b.chatId, "selfDestruct")
-    dsp.DelSession(b.chatId)
+func (b *bot) selfDestruct(timech <- chan time.Time) {
+    select {
+    case <-timech:
+        b.SendMessage("goodbye", b.chatId)
+        dsp.DelSession(b.chatId)
+    }
 }
 
 func (b *bot) Update(update *echosphere.Update) {

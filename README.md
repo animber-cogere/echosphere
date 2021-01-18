@@ -7,7 +7,9 @@ Fetch with
 go get -u github.com/animber-coder/echosphere
 ```
 
-### Usage
+## Usage
+
+### Long Polling
 
 A very simple implementation:
 
@@ -89,5 +91,40 @@ func (b *bot) Update(update *echosphere.Update) {
 func main() {
     dsp = echosphere.NewDispatcher(TOKEN, newBot)
     dsp.Run()
+}
+```
+
+### Webhook
+
+```go
+package main
+
+import (
+	"github.com/animber-coder/echosphere"
+)
+
+type bot struct {
+	chatId int64
+	echosphere.Api
+}
+
+const TOKEN = "YOUR TELEGRAM TOKEN"
+
+func newBot(chatId int64) echosphere.Bot {
+	return &bot{
+		chatId,
+		echosphere.NewApi(TOKEN),
+	}
+}
+
+func (b *bot) Update(update *echosphere.Update) {
+	if update.Message.Text == "/start" {
+		b.SendMessage("Hello world", b.chatId)
+	}
+}
+
+func main() {
+	dsp := echosphere.NewDispatcher(TOKEN, newBot)
+	dsp.RunWithWebhook("https://newworld.com:443/bot", 40987)
 }
 ```

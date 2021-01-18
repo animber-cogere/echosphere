@@ -99,9 +99,7 @@ func main() {
 ```go
 package main
 
-import (
-	"github.com/animber-coder/echosphere"
-)
+import "github.com/animber-coder/echosphere"
 
 type bot struct {
 	chatId int64
@@ -125,6 +123,6 @@ func (b *bot) Update(update *echosphere.Update) {
 
 func main() {
 	dsp := echosphere.NewDispatcher(TOKEN, newBot)
-	dsp.RunWithWebhook("https://newworld.com:443/bot", 40987)
+	dsp.ListenWebhook("https://newworld:443/bot", 23456)
 }
 ```

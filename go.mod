@@ -1,3 +1,3 @@
 module github.com/animber-coder/echosphere
 
-go 1.15
+go 1.16

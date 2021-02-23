@@ -16,7 +16,11 @@ A very simple implementation:
 ```go
 package main
 
-import "github.com/animber-coder/echosphere"
+import (
+    "log"
+
+    "github.com/animber-coder/echosphere"
+)
 
 type bot struct {
     chatId int64
@@ -40,7 +44,7 @@ func (b *bot) Update(update *echosphere.Update) {
 
 func main() {
     dsp := echosphere.NewDispatcher(TOKEN, newBot)
-    dsp.Run()
+    log.Println(dsp.Poll())
 }
 ```
 
@@ -51,6 +55,7 @@ Also proof of concept with self destruction for low ram usage
 package main
 
 import (
+    "log"
     "time"
 
     "github.com/animber-coder/echosphere"
@@ -89,8 +94,8 @@ func (b *bot) Update(update *echosphere.Update) {
 }
 
 func main() {
-    dsp = echosphere.NewDispatcher(TOKEN, newBot)
-    dsp.Run()
+    dsp := echosphere.NewDispatcher(TOKEN, newBot)
+    log.Println(dsp.Poll())
 }
 ```
 

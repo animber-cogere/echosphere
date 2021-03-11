@@ -3,6 +3,7 @@
 Library for telegram bots written in pure go
 
 Fetch with
+
 ```bash
 go get github.com/animber-coder/echosphere/v2
 ```
@@ -16,7 +17,11 @@ A very simple implementation:
 ```go
 package main
 
-import "github.com/animber-coder/echosphere/v2"
+import (
+    "log"
+
+    "github.com/animber-coder/echosphere/v2"
+)
 
 type bot struct {
     chatId int64
@@ -40,7 +45,7 @@ func (b *bot) Update(update *echosphere.Update) {
 
 func main() {
     dsp := echosphere.NewDispatcher(TOKEN, newBot)
-    dsp.Poll()
+    log.Println(dsp.Poll())
 }
 ```
 
@@ -51,6 +56,7 @@ Also proof of concept with self destruction for low ram usage
 package main
 
 import (
+    "log"
     "time"
 
     "github.com/animber-coder/echosphere/v2"
@@ -89,8 +95,8 @@ func (b *bot) Update(update *echosphere.Update) {
 }
 
 func main() {
-    dsp = echosphere.NewDispatcher(TOKEN, newBot)
-    dsp.Poll()
+    dsp := echosphere.NewDispatcher(TOKEN, newBot)
+    log.Println(dsp.Poll())
 }
 ```
 

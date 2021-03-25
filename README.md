@@ -25,7 +25,7 @@ import (
 
 type bot struct {
     chatId int64
-    echosphere.Api
+    echosphere.API
 }
 
 const TOKEN = "YOUR TELEGRAM TOKEN"
@@ -33,7 +33,7 @@ const TOKEN = "YOUR TELEGRAM TOKEN"
 func newBot(chatId int64) echosphere.Bot {
     return &bot{
         chatId,
-        echosphere.NewApi(TOKEN),
+        echosphere.NewAPI(TOKEN),
     }
 }
 
@@ -64,7 +64,7 @@ import (
 
 type bot struct {
     chatId int64
-    echosphere.Api
+    echosphere.API
 }
 
 const TOKEN = "YOUR TELEGRAM TOKEN"
@@ -74,7 +74,7 @@ var dsp echosphere.Dispatcher
 func newBot(chatId int64) echosphere.Bot {
     var bot = &bot{
         chatId,
-        echosphere.NewApi(TOKEN),
+        echosphere.NewAPI(TOKEN),
     }
     go bot.selfDestruct(time.After(time.Hour))
     return bot
@@ -109,7 +109,7 @@ import "github.com/animber-coder/echosphere/v2"
 
 type bot struct {
 	chatId int64
-	echosphere.Api
+	echosphere.API
 }
 
 const TOKEN = "YOUR TELEGRAM TOKEN"
@@ -117,7 +117,7 @@ const TOKEN = "YOUR TELEGRAM TOKEN"
 func newBot(chatId int64) echosphere.Bot {
 	return &bot{
 		chatId,
-		echosphere.NewApi(TOKEN),
+		echosphere.NewAPI(TOKEN),
 	}
 }
 

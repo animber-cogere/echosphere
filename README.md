@@ -24,26 +24,22 @@ import (
 )
 
 type bot struct {
-    chatId int64
+    chatID int64
     echosphere.API
 }
 
 const token = "YOUR TELEGRAM TOKEN"
 
-func newBot(chatId int64) echosphere.Bot {
+func newBot(chatID int64) echosphere.Bot {
     return &bot{
-        chatId,
+        chatID,
         echosphere.NewAPI(token),
     }
 }
 
 func (b *bot) Update(update *echosphere.Update) {
     if update.Message.Text == "/start" {
-        b.SendMessage(
-            "Hello world",
-            b.chatId,
-            nil,
-        )
+        b.SendMessage("Hello world", b.chatID, nil)
     }
 }
 
@@ -67,7 +63,7 @@ import (
 )
 
 type bot struct {
-    chatId int64
+    chatID int64
     echosphere.API
 }
 
@@ -75,9 +71,9 @@ const token = "YOUR TELEGRAM TOKEN"
 
 var dsp echosphere.Dispatcher
 
-func newBot(chatId int64) echosphere.Bot {
+func newBot(chatID int64) echosphere.Bot {
     var bot = &bot{
-        chatId,
+        chatID,
         echosphere.NewAPI(token),
     }
     go bot.selfDestruct(time.After(time.Hour))
@@ -87,22 +83,14 @@ func newBot(chatId int64) echosphere.Bot {
 func (b *bot) selfDestruct(timech <- chan time.Time) {
     select {
     case <-timech:
-        b.SendMessage(
-            "goodbye",
-            b.chatId,
-            nil,
-        )
-        dsp.DelSession(b.chatId)
+        b.SendMessage("goodbye", b.chatID, nil)
+        dsp.DelSession(b.chatID)
     }
 }
 
 func (b *bot) Update(update *echosphere.Update) {
     if update.Message.Text == "/start" {
-        b.SendMessage(
-            "Hello world",
-            b.chatId,
-            nil,
-        )
+        b.SendMessage("Hello world", b.chatId, nil)
     }
 }
 
@@ -120,26 +108,22 @@ package main
 import "github.com/animber-coder/echosphere/v3"
 
 type bot struct {
-	chatId int64
+	chatID int64
 	echosphere.API
 }
 
 const token = "YOUR TELEGRAM TOKEN"
 
-func newBot(chatId int64) echosphere.Bot {
+func newBot(chatID int64) echosphere.Bot {
 	return &bot{
-		chatId,
+		chatID,
 		echosphere.NewAPI(token),
 	}
 }
 
 func (b *bot) Update(update *echosphere.Update) {
 	if update.Message.Text == "/start" {
-		b.SendMessage(
-            "Hello world",
-            b.chatId,
-            nil,
-        )
+		b.SendMessage("Hello world",b.chatID,nil)
 	}
 }
 

@@ -123,7 +123,7 @@ func newBot(chatID int64) echosphere.Bot {
 
 func (b *bot) Update(update *echosphere.Update) {
 	if update.Message.Text == "/start" {
-		b.SendMessage("Hello world",b.chatID,nil)
+		b.SendMessage("Hello world", b.chatID, nil)
 	}
 }
 

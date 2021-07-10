@@ -1,4 +1,11 @@
-# echosphere [![Language](https://img.shields.io/badge/Language-Go-blue.svg)](https://golang.org/) [![PkgGoDev](https://pkg.go.dev/badge/github.com/animber-coder/echosphere/v3)](https://pkg.go.dev/github.com/animber-coder/echosphere/v3) [![Go Report Card](https://goreportcard.com/badge/github.com/animber-coder/echosphere)](https://goreportcard.com/report/github.com/animber-coder/echosphere) [![License](http://img.shields.io/badge/license-LGPL3.0-orange.svg?style=flat)](https://github.com/animber-coder/echosphere/blob/master/LICENSE) [![Build Status](https://travis-ci.com/animber-coder/echosphere.svg?branch=master)](https://travis-ci.com/animber-coder/echosphere) [![Coverage Status](https://coveralls.io/repos/github/animber-coder/echosphere/badge.svg?branch=master)](https://coveralls.io/github/animber-coder/echosphere?branch=master) [![Mentioned in Awesome Go](https://awesome.re/mentioned-badge.svg)](https://github.com/avelino/awesome-go)
+# echosphere 
+[![Language](https://img.shields.io/badge/Language-Go-blue.svg)](https://golang.org/)
+[![PkgGoDev](https://pkg.go.dev/badge/github.com/animber-coder/echosphere/v3)](https://pkg.go.dev/github.com/animber-coder/echosphere/v3)
+[![Go Report Card](https://goreportcard.com/badge/github.com/animber-coder/echosphere)](https://goreportcard.com/report/github.com/animber-coder/echosphere)
+[![License](http://img.shields.io/badge/license-LGPL3.0-orange.svg?style=flat)](https://github.com/animber-coder/echosphere/blob/master/LICENSE)
+[![Build Status](https://travis-ci.com/animber-coder/echosphere.svg?branch=master)](https://travis-ci.com/animber-coder/echosphere)
+[![Coverage Status](https://coveralls.io/repos/github/animber-coder/echosphere/badge.svg?branch=master)](https://coveralls.io/github/animber-coder/echosphere?branch=master)
+[![Mentioned in Awesome Go](https://awesome.re/mentioned-badge.svg)](https://github.com/avelino/awesome-go)
 
 Library for telegram bots written in pure go
 
@@ -14,7 +21,7 @@ go get github.com/animber-coder/echosphere/v3
 
 A very simple implementation:
 
-```go
+```golang
 package main
 
 import (
@@ -52,7 +59,7 @@ func main() {
 
 Also proof of concept with self destruction for low ram usage
 
-```go
+```golang
 package main
 
 import (
@@ -102,7 +109,7 @@ func main() {
 
 ### Webhook
 
-```go
+```golang
 package main
 
 import "github.com/animber-coder/echosphere/v3"

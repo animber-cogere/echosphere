@@ -20,12 +20,15 @@ package echosphere
 
 import (
 	"errors"
+	"fmt"
 	"testing"
+	"time"
 )
 
 var (
-	stickerFile *File
-	stickerSet  *StickerSet
+	stickerFile    *File
+	stickerSet     *StickerSet
+	stickerSetName = fmt.Sprintf("set%d_by_echosphere_coverage_bot", time.Now().Unix())
 )
 
 func TestUploadStickerFile(t *testing.T) {
@@ -47,7 +50,7 @@ func TestUploadStickerFile(t *testing.T) {
 func TestCreateNewStickerSet(t *testing.T) {
 	_, err := api.CreateNewStickerSet(
 		chatID,
-		"echocoverpack_by_echosphere_coverage_bot",
+		stickerSetName,
 		"Echosphere Coverage Pack",
 		"🤖",
 		StickerFile{
@@ -83,7 +86,7 @@ func TestCreateNewStickerSet(t *testing.T) {
 func TestAddStickerToSet(t *testing.T) {
 	_, err := api.AddStickerToSet(
 		chatID,
-		"echocoverpack_by_echosphere_coverage_bot",
+		stickerSetName,
 		"🤖",
 		StickerFile{
 			NewInputFilePath("assets/tests/echosphere_sticker.png"),
@@ -99,7 +102,7 @@ func TestAddStickerToSet(t *testing.T) {
 
 func TestGetStickerSet(t *testing.T) {
 	resp, err := api.GetStickerSet(
-		"echocoverpack_by_echosphere_coverage_bot",
+		stickerSetName,
 	)
 
 	if err != nil {
@@ -144,7 +147,7 @@ func TestSendSticker(t *testing.T) {
 
 func TestSetStickerSetThumb(t *testing.T) {
 	_, err := api.SetStickerSetThumb(
-		"echocoverpack_by_echosphere_coverage_bot",
+		stickerSetName,
 		chatID,
 		NewInputFilePath("assets/tests/echosphere_thumb.png"),
 	)

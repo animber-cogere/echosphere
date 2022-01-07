@@ -1,4 +1,4 @@
-# echosphere 
+# echosphere
 
 | <br/><img src="assets/logo.png" alt="logo" width="400"><br/><br/> [![Language](https://img.shields.io/badge/Language-Go-blue.svg)](https://golang.org/) [![PkgGoDev](https://pkg.go.dev/badge/github.com/animber-coder/echosphere/v3)](https://pkg.go.dev/github.com/animber-coder/echosphere/v3) [![Go Report Card](https://goreportcard.com/badge/github.com/animber-coder/echosphere)](https://goreportcard.com/report/github.com/animber-coder/echosphere) [![License](http://img.shields.io/badge/license-LGPL3.0-orange.svg?style=flat)](https://github.com/animber-coder/echosphere/blob/master/LICENSE) [![Build Status](https://travis-ci.com/animber-coder/echosphere.svg?branch=master)](https://travis-ci.com/animber-coder/echosphere) [![Coverage Status](https://coveralls.io/repos/github/animber-coder/echosphere/badge.svg?branch=master)](https://coveralls.io/github/animber-coder/echosphere?branch=master) [![Mentioned in Awesome Go](https://awesome.re/mentioned-badge.svg)](https://github.com/avelino/awesome-go) [![Telegram](https://img.shields.io/badge/Echosphere%20News-blue?logo=telegram&style=flat)](https://t.me/echospherenews) |
 | :------: |
@@ -216,7 +216,7 @@ func main() {
 	// Capture the interrupt signal for app termination handling
 	dsp := echosphere.NewDispatcher(token, newBot)
 	dsp.SetHTTPServer(server)
-	// Start your custom http.Server with a registered /webhook handler. 
-	log.Println(dsp.ListenWebhook("https://example.com/webhook"))
+	// Start your custom http.Server with a registered /my_bot_token handler.
+	log.Println(dsp.ListenWebhook("https://example.com/my_bot_token"))
 }
 ```

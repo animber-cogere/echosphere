@@ -1,0 +1,17 @@
+package echosphere
+
+import "testing"
+
+var a APIError
+
+func TestErrorCode(_ *testing.T) {
+	a.ErrorCode()
+}
+
+func TestDescription(_ *testing.T) {
+	a.Description()
+}
+
+func TestError(_ *testing.T) {
+	a.Error()
+}

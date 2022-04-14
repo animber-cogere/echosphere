@@ -41,6 +41,8 @@ import (
     "github.com/animber-coder/echosphere/v3"
 )
 
+// Struct useful for managing internal states in your bot, but it could be of
+// any type such as `type bot int64` if you only need to store the chatID.
 type bot struct {
     chatID int64
     echosphere.API
@@ -48,6 +50,11 @@ type bot struct {
 
 const token = "YOUR TELEGRAM TOKEN"
 
+// This function needs to be of type 'echosphere.NewBotFn' and is called by
+// the echosphere dispatcher upon any new message from a chatID that has never
+// interacted with the bot before.
+// This means that echosphere keeps one instance of the echosphere.Bot implementation
+// for each chat where the bot is used.
 func newBot(chatID int64) echosphere.Bot {
     return &bot{
         chatID,
@@ -55,6 +62,7 @@ func newBot(chatID int64) echosphere.Bot {
     }
 }
 
+// This method is needed to implement the echosphere.Bot interface.
 func (b *bot) Update(update *echosphere.Update) {
     if update.Message.Text == "/start" {
         b.SendMessage("Hello world", b.chatID, nil)
@@ -62,12 +70,76 @@ func (b *bot) Update(update *echosphere.Update) {
 }
 
 func main() {
+	// This is the entry point of echosphere library.
     dsp := echosphere.NewDispatcher(token, newBot)
     log.Println(dsp.Poll())
 }
 ```
 
-Proof of concept with self destruction for low RAM usage:
+Functional example with bot internal states:
+
+```golang
+package main
+
+import (
+    "log"
+    "strings"
+
+    "github.com/animber-coder/echosphere/v3"
+)
+
+// Recursive type definition of the bot state function.
+type stateFn func(*echosphere.Update) stateFn
+
+type bot struct {
+	chatID int64
+	state  stateFn
+	name   string
+	echosphere.API
+}
+
+const token = "YOUR TELEGRAM TOKEN"
+
+func newBot(chatID int64) echosphere.Bot {
+	bot := &bot{
+		chatID: chatID,
+		API:    echosphere.NewAPI(token),
+	}
+	// We set the default state to the bot.handleMessage method.
+	bot.state = bot.handleMessage
+	return bot
+}
+
+func (b *bot) Update(update *echosphere.Update) {
+	// Here we execute the current state and set the next one.
+	b.state = b.state(update)
+}
+
+func (b *bot) handleMessage(update *echosphere.Update) {
+	if strings.HasPrefix(update.Message.Text, "/set_name") {
+		b.SendMessage("Send me my new name!", b.chatID, nil)
+		// Here we return b.handleName since next time we receive a message it
+		// will be the new name.
+		return b.handleName
+	}
+	return b.handleMessage
+}
+
+func (b *bot) handleName(update *echosphere.Update) {
+	b.name = update.Message.Text
+	b.SendMessage(fmt.Sprintf("My new name is %q", b.name), b.chatID, nil)
+	// Here we return b.handleMessage since the next time we receive a message
+	// it will be handled in the default way.
+	return b.handleMessage
+}
+
+func main() {
+	dsp := echosphere.NewDispatcher(token, newBot)
+    log.Println(dsp.Poll())
+}
+```
+
+Example with self destruction for lower RAM usage:
 
 ```golang
 package main
@@ -89,7 +161,7 @@ const token = "YOUR TELEGRAM TOKEN"
 var dsp echosphere.Dispatcher
 
 func newBot(chatID int64) echosphere.Bot {
-    var bot = &bot{
+    bot := &bot{
         chatID,
         echosphere.NewAPI(token),
     }
@@ -98,11 +170,9 @@ func newBot(chatID int64) echosphere.Bot {
 }
 
 func (b *bot) selfDestruct(timech <- chan time.Time) {
-    select {
-    case <-timech:
-        b.SendMessage("goodbye", b.chatID, nil)
-        dsp.DelSession(b.chatID)
-    }
+	<-timech
+	b.SendMessage("goodbye", b.chatID, nil)
+    dsp.DelSession(b.chatID)
 }
 
 func (b *bot) Update(update *echosphere.Update) {
@@ -112,7 +182,7 @@ func (b *bot) Update(update *echosphere.Update) {
 }
 
 func main() {
-    dsp := echosphere.NewDispatcher(token, newBot)
+    dsp = echosphere.NewDispatcher(token, newBot)
     log.Println(dsp.Poll())
 }
 ```

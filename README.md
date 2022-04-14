@@ -36,16 +36,16 @@ A very simple implementation:
 package main
 
 import (
-    "log"
+	"log"
 
-    "github.com/animber-coder/echosphere/v3"
+	"github.com/animber-coder/echosphere/v3"
 )
 
 // Struct useful for managing internal states in your bot, but it could be of
 // any type such as `type bot int64` if you only need to store the chatID.
 type bot struct {
-    chatID int64
-    echosphere.API
+	chatID int64
+	echosphere.API
 }
 
 const token = "YOUR TELEGRAM TOKEN"
@@ -56,23 +56,23 @@ const token = "YOUR TELEGRAM TOKEN"
 // This means that echosphere keeps one instance of the echosphere.Bot implementation
 // for each chat where the bot is used.
 func newBot(chatID int64) echosphere.Bot {
-    return &bot{
-        chatID,
-        echosphere.NewAPI(token),
-    }
+	return &bot{
+		chatID,
+		echosphere.NewAPI(token),
+	}
 }
 
 // This method is needed to implement the echosphere.Bot interface.
 func (b *bot) Update(update *echosphere.Update) {
-    if update.Message.Text == "/start" {
-        b.SendMessage("Hello world", b.chatID, nil)
-    }
+	if update.Message.Text == "/start" {
+		b.SendMessage("Hello world", b.chatID, nil)
+	}
 }
 
 func main() {
-    // This is the entry point of echosphere library.
-    dsp := echosphere.NewDispatcher(token, newBot)
-    log.Println(dsp.Poll())
+	// This is the entry point of echosphere library.
+	dsp := echosphere.NewDispatcher(token, newBot)
+	log.Println(dsp.Poll())
 }
 ```
 
@@ -82,10 +82,10 @@ Functional example with bot internal states:
 package main
 
 import (
-    "log"
-    "strings"
+	"log"
+	"strings"
 
-    "github.com/animber-coder/echosphere/v3"
+	"github.com/animber-coder/echosphere/v3"
 )
 
 // Recursive type definition of the bot state function.
@@ -103,7 +103,7 @@ const token = "YOUR TELEGRAM TOKEN"
 func newBot(chatID int64) echosphere.Bot {
 	bot := &bot{
 		chatID: chatID,
-		API:    echosphere.NewAPI(token),
+		API:	echosphere.NewAPI(token),
 	}
 	// We set the default state to the bot.handleMessage method.
 	bot.state = bot.handleMessage
@@ -135,7 +135,7 @@ func (b *bot) handleName(update *echosphere.Update) {
 
 func main() {
 	dsp := echosphere.NewDispatcher(token, newBot)
-    log.Println(dsp.Poll())
+	log.Println(dsp.Poll())
 }
 ```
 
@@ -145,15 +145,15 @@ Example with self destruction for lower RAM usage:
 package main
 
 import (
-    "log"
-    "time"
+	"log"
+	"time"
 
-    "github.com/animber-coder/echosphere/v3"
+	"github.com/animber-coder/echosphere/v3"
 )
 
 type bot struct {
-    chatID int64
-    echosphere.API
+	chatID int64
+	echosphere.API
 }
 
 const token = "YOUR TELEGRAM TOKEN"
@@ -161,29 +161,29 @@ const token = "YOUR TELEGRAM TOKEN"
 var dsp echosphere.Dispatcher
 
 func newBot(chatID int64) echosphere.Bot {
-    bot := &bot{
-        chatID,
-        echosphere.NewAPI(token),
-    }
-    go bot.selfDestruct(time.After(time.Hour))
-    return bot
+	bot := &bot{
+		chatID,
+		echosphere.NewAPI(token),
+	}
+	go bot.selfDestruct(time.After(time.Hour))
+	return bot
 }
 
 func (b *bot) selfDestruct(timech <- chan time.Time) {
 	<-timech
 	b.SendMessage("goodbye", b.chatID, nil)
-    dsp.DelSession(b.chatID)
+	dsp.DelSession(b.chatID)
 }
 
 func (b *bot) Update(update *echosphere.Update) {
-    if update.Message.Text == "/start" {
-        b.SendMessage("Hello world", b.chatId, nil)
-    }
+	if update.Message.Text == "/start" {
+		b.SendMessage("Hello world", b.chatId, nil)
+	}
 }
 
 func main() {
-    dsp = echosphere.NewDispatcher(token, newBot)
-    log.Println(dsp.Poll())
+	dsp = echosphere.NewDispatcher(token, newBot)
+	log.Println(dsp.Poll())
 }
 ```
 
@@ -231,7 +231,7 @@ package main
 
 import (
 	"github.com/animber-coder/echosphere/v3"
-	
+
 	"context"
 	"log"
 	"net/http"

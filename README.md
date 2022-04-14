@@ -70,7 +70,7 @@ func (b *bot) Update(update *echosphere.Update) {
 }
 
 func main() {
-	// This is the entry point of echosphere library.
+    // This is the entry point of echosphere library.
     dsp := echosphere.NewDispatcher(token, newBot)
     log.Println(dsp.Poll())
 }

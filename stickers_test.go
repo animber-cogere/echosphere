@@ -34,8 +34,8 @@ func TestUploadStickerFile(t *testing.T) {
 	resp, err := api.UploadStickerFile(
 		chatID,
 		StickerFile{
-			NewInputFilePath("assets/tests/echosphere_test.png"),
-			PNGSticker,
+			File: NewInputFilePath("assets/tests/echosphere_test.png"),
+			Type: PNGSticker,
 		},
 	)
 
@@ -53,8 +53,8 @@ func TestCreateNewStickerSet(t *testing.T) {
 		"Echosphere Coverage Pack",
 		"🤖",
 		StickerFile{
-			NewInputFileID(stickerFile.FileID),
-			PNGSticker,
+			File: NewInputFileID(stickerFile.FileID),
+			Type: PNGSticker,
 		},
 		nil,
 	)
@@ -70,8 +70,8 @@ func TestAddStickerToSet(t *testing.T) {
 		stickerSetName,
 		"🤖",
 		StickerFile{
-			NewInputFilePath("assets/tests/echosphere_sticker.png"),
-			PNGSticker,
+			File: NewInputFilePath("assets/tests/echosphere_sticker.png"),
+			Type: PNGSticker,
 		},
 		nil,
 	)

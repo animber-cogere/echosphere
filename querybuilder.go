@@ -19,7 +19,6 @@
 package echosphere
 
 import (
-	"fmt"
 	"encoding/json"
 	"net/url"
 	"reflect"

@@ -1,7 +1,7 @@
 | <img src="assets/readme_banner.png" alt="logo" width="800"><br/><br/> [![Language](https://img.shields.io/badge/Language-Go-blue.svg)](https://golang.org/) [![PkgGoDev](https://pkg.go.dev/badge/github.com/animber-coder/echosphere/v3)](https://pkg.go.dev/github.com/animber-coder/echosphere/v3) [![Go Report Card](https://goreportcard.com/badge/github.com/animber-coder/echosphere/v3)](https://goreportcard.com/report/github.com/animber-coder/echosphere/v3) [![License](http://img.shields.io/badge/license-LGPL3.0-orange.svg?style=flat)](https://github.com/animber-coder/echosphere/blob/master/LICENSE) [![Coverage Status](https://coveralls.io/repos/github/animber-coder/echosphere/badge.svg?branch=master)](https://coveralls.io/github/animber-coder/echosphere?branch=master) [![Mentioned in Awesome Go](https://awesome.re/mentioned-badge.svg)](https://github.com/avelino/awesome-go) [![Telegram](https://img.shields.io/badge/Echosphere%20News-blue?logo=telegram&style=flat)](https://t.me/echospherenews) |
 | :------: |
 
-**Echosphere** is a concurrent library for telegram bots written in pure Go.
+**Echosphere** is an elegant and concurrent library for the Telegram bot API in Go.
 
 Fetch with
 
